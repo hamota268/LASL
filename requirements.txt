@@ -1,0 +1,11 @@
+streamlit
+django
+tensorflow
+opencv-python
+mediapipe
+googletrans==4.0.0rc1
+arabic-reshaper
+python-bidi
+pillow
+language_tool_python
+numpy
