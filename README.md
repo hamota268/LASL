@@ -1,6 +1,6 @@
 # LASL: Live Arabic Sign Language Recognition & Translation
 
-![LASL Banner](handsign_app/static/main_resources/images/hello-wordle.png)
+![favicon](https://github.com/user-attachments/assets/50a4e8e6-002b-464f-b99e-0482297d47f4)
 
 ## Overview
 
@@ -15,6 +15,8 @@ The project leverages:
 - **LanguageTool** for local grammar correction
 
 ---
+
+
 
 ## Features
 
