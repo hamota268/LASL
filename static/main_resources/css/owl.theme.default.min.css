@@ -1,0 +1,59 @@
+.owl-theme .owl-controls {
+    margin-top: 10px;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.owl-theme .owl-controls .owl-nav [class*=owl-] {
+    color: #fff;
+    font-size: 14px;
+    margin: 5px;
+    padding: 6px 10px; /* Adjusted padding for better spacing */
+    background: #333; /* Updated background color for better contrast */
+    display: inline-block;
+    cursor: pointer;
+    -webkit-border-radius: 5px; /* Increased border radius for smoother edges */
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease; /* Added smooth transition */
+}
+
+.owl-theme .owl-controls .owl-nav [class*=owl-]:hover {
+    background: #555; /* Updated hover background color */
+    color: #fff;
+    text-decoration: none;
+}
+
+.owl-theme .owl-controls .owl-nav .disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.owl-theme .owl-dots .owl-dot {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    width: 12px; /* Increased dot size */
+    height: 12px;
+    margin: 5px 7px;
+    background: #d6d6d6;
+    display: block;
+    -webkit-backface-visibility: visible;
+    -webkit-transition: background 0.3s ease, transform 0.3s ease; /* Added smooth transition */
+    -moz-transition: background 0.3s ease, transform 0.3s ease;
+    -ms-transition: background 0.3s ease, transform 0.3s ease;
+    -o-transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
+    -webkit-border-radius: 50%; /* Made dots circular */
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+    background: #333; /* Updated active and hover background color */
+    transform: scale(1.2); /* Added scaling effect on hover and active */
+}

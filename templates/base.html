@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}L.A.S.L{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'main_resources/images/favicon.jpg' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'main_resources/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'main_resources/css/icomoon.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main_resources/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main_resources/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main_resources/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'main_resources/css/style.css' %}">
+
+    <!-- Modernizr JS -->
+    <script src="{% static 'main_resources/js/modernizr-2.6.2.min.js' %}"></script>
+
+    <style>
+        /* Add your custom CSS styles here */
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: none;
+            border-radius: 5px;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+        .navbar-nav .nav-link {
+            text-decoration: none; /* Remove underline */
+        }
+        .navbar-nav .nav-link:hover,
+        .brand-logo:hover {
+            color: rgb(0, 0, 0);
+            background-color: none;
+            box-shadow: none;
+            transform: none;
+            text-decoration: none;
+        }
+        /* Add the updated CSS styles here */
+		.navbar-toggler {
+			border: none; /* Remove border */
+   			background-color: transparent; /* Transparent background */
+    			padding: 8px 10px; /* Adjust padding for better spacing */
+    			margin: 0; /* Ensure no extra margin */
+    			outline: none !important; /* Forcefully remove focus outline */
+    			box-shadow: none !important; /* Forcefully remove any shadow */
+   			transition: transform 0.3s ease;
+		}
+		  
+		  .navbar-toggler-icon {
+			display: inline-block;
+			outline: none; /* Remove focus outline */
+			box-shadow: none; /
+			width: 30px;
+			height: 3px;
+			background-color: #333; /* Color of the hamburger lines */
+			position: relative;
+			transition: all 0.3s ease; /* Smooth animation for the lines */
+		  }
+		  .navbar-toggler:focus,
+		  .navbar-toggler:active {
+			outline: none !important; /* Remove focus outline */
+			box-shadow: none !important; /* Remove any focus shadow */
+		  }
+		.navbar-toggler-icon::before,
+		.navbar-toggler-icon::after {
+		    content: '';
+		    display: block;
+		    width: 30px;
+		    height: 3px;
+		    background-color: #333;
+		    position: absolute;
+		    left: 0;
+		    transition: all 0.3s ease;
+		}
+		
+		.navbar-toggler-icon::before {
+		    top: -8px;
+		}
+		
+		.navbar-toggler-icon::after {
+		    top: 8px;
+		}
+		
+		.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+		    background-color: transparent;
+		}
+		
+		.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+		    transform: rotate(45deg);
+		    top: 0;
+		}
+		
+		.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+		    transform: rotate(-45deg);
+		    top: 0;
+		}
+	</style>
+</head>
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+             <!-- Hamburger Button -->
+	        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a id="translate-ar" class="btn btn-outline-dark nav-link" style="outline: none;" href="#">ar 🇸🇦</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark nav-link" style="outline: none;" href="{% url 'welcome' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark nav-link" style="outline: none;" href="{% url 'about_us' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark nav-link" style="outline: none;" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="btn btn-outline-dark nav-link" style="outline: none; color: rgb(250, 234, 13); background-color: black">
+                            Hello, {{ user.username }}
+                        </span>
+                    </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark nav-link" style="outline: none; background-color: #8B0000; color: white;">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark nav-link" style="outline: none;" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark nav-link" style="outline: none;" href="{% url 'register' %}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dynamic Content -->
+    <div id="colorlib-page">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Hidden Google Translate Widget -->
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <!-- Script to Trigger Arabic Translation -->
+    <script>
+        document.getElementById('translate-ar').addEventListener('click', function () {
+            const checkIframeLoaded = setInterval(() => {
+                const iframe = document.querySelector('iframe.goog-te-menu-frame');
+                if (iframe) {
+                    const arabicOption = iframe.contentDocument.querySelector('span[lang="ar"]');
+                    if (arabicOption) {
+                        arabicOption.click(); // Trigger the Arabic translation
+                        clearInterval(checkIframeLoaded); // Stop checking once the translation is triggered
+                    }
+                }
+            }, 500); // Check every 500ms
+
+            // Timeout after 10 seconds if the iframe doesn't load
+            setTimeout(() => {
+                clearInterval(checkIframeLoaded);
+                alert('Translation options are not loaded yet. Please try again.');
+            }, 10000);
+        });
+    </script>
+
+    <!-- JS Files -->
+    <script src="{% static 'main_resources/js/jquery.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/jquery.easing.1.3.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'main_resources/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/magnific-popup-options.js' %}"></script>
+    <script src="{% static 'main_resources/js/main.js' %}"></script>
+</html>

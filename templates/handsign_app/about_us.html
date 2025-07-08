@@ -1,0 +1,300 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>L.A.S.L</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="icon" type="image/x-icon" href="{% static 'main_resources/images/favicon.jpg' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{% static 'main_resources/css/animate.css' %}">
+    <!-- Icomoon Icon Fonts -->
+    <link rel="stylesheet" href="{% static 'main_resources/css/icomoon.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'main_resources/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main_resources/css/owl.theme.default.min.css' %}">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'main_resources/css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'main_resources/css/style.css' %}">
+    <!-- Modernizr JS -->
+    <script src="{% static 'main_resources/js/modernizr-2.6.2.min.js' %}"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .brand-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link {
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .brand-logo:hover {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .navbar-toggler {
+            border: none;
+            background-color: transparent;
+            padding: 8px 10px;
+            margin: 0;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-toggler-icon {
+            display: inline-block;
+            width: 30px;
+            height: 3px;
+            background-color: #333;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: #333;
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler-icon::after {
+            top: 8px;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Hamburger Button -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a id="translate-ar" class="btn btn-outline-dark nav-link" href="#">ar 🇸🇦</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark nav-link" href="/about_us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                            <!-- If the user is logged in -->
+                            <a class="btn btn-outline-dark nav-link" style="outline: none; background-color:rgb(250, 234, 13)" href="/embedded_streamlit">
+                                Let's Start
+                            </a>
+                        {% else %}
+                            <!-- If the user is not logged in -->
+                            <a class="btn btn-outline-dark nav-link" style="outline: none; background-color:rgb(250, 234, 13)" href="/login">
+                                Get Started
+                            </a>
+                        {% endif %}
+                    </li>
+                </li>
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                  <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-outline-dark nav-link" style="outline: none; background-color: #8B0000; color: white;">
+                          Logout
+                      </button>
+                  </form>
+                  </li>
+                  {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="colorlib-page">
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="colorlib-navbar-brand">
+                            <a href="/" class="brand-logo">L A S L</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="colorlib-about">
+            <div class="about-flex js-fullheight">
+                <div class="col-half js-full-height about-img" style="background-image: url('{% static "main_resources/images/abot1.jpg" %}');"></div>                <div class="col-half">
+                    <div class="owl-carousel3">
+                        <!-- Slide 1 -->
+                        <div class="item">
+                            <div class="display-t js-fullheight">
+                                <div class="display-tc js-fullheight">
+                                    <div class="about-desc">
+                                        <span class="title">About Us</span>
+                                        <h2 class="about-head">Hi! We are modern academy</h2>
+                                        <p><strong>Where The Invoations Begins.</strong></p>
+                                        <p>We are a team of three passionate students from the Modern Academy for Technology. Driven by a shared vision to bridge communication gaps, we developed a live hand sign language website as part of our academic journey.
+							Our project was created under the valuable supervision and guidance of our esteemed doctors, whose support and expertise were instrumental throughout the process.
+							Through this platform, we aim to make communication more accessible and inclusive for everyone. We are proud to contribute a real-world solution that reflects our dedication to innovation, technology, and social impact.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="item">
+                            <div class="display-t js-fullheight">
+                                <div class="display-tc js-fullheight">
+                                    <div class="about-desc">
+                                        <span class="title">Our Team</span>
+                                        <h2 class="about-head">Who We Are?</h2>
+                                        <p><strong>Authers:</strong></p>
+                                        <p>•Youssef Hamed - Junior back-end developer and purple hat cybersecurity senior.</p>
+						    <p>•Youssef Osama - Junior front-end developer.</p>
+						    <p>•Abdullah Srour - Junior AI Engineer and Machine learning Engineer.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="item">
+                            <div class="display-t js-fullheight">
+                                <div class="display-tc js-fullheight">
+                                    <div class="about-desc">
+                                        <span class="title">supervisors</span>
+                                        <h2 class="about-head">Our Mentors</h2>
+                                        <p><strong>Special Thanks To:</strong></p>
+						    <p>•Our Dean: DR. Mahmoud El-Sayed Gadallah.</p>
+						    <p>•Our Doctor: DR. Nora Salah Niazy.</p>
+						    <p>•Our UTA: ENG. Ahmed Haney.</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-pb-sm text-center">
+                            <h2>Office</h2>
+                            <p>Cairo, Nasr City</p>
+                        </div>
+                        <div class="col-md-4 col-pb-sm text-center">
+                            <h2>Get in Touch</h2>
+                            <p><a href="#">noname258@protonmail.com</a></p>
+                        </div>
+                        <div class="col-md-4 col-pb-sm text-center">
+                            <h2>Social</h2>
+                            <p class="colorlib-social-icons">
+                                <a href="#"><i class="icon-facebook4"></i></a>
+                                <a href="#"><i class="icon-twitter3"></i></a>
+                                <a href="#"><i class="icon-googleplus"></i></a>
+                                <a href="#"><i class="icon-dribbble2"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Hidden Google Translate Widget -->
+    <div id="google_translate_element" style="display: none;"></div>
+
+    <!-- Scripts -->
+    <script src="{% static 'main_resources/js/jquery.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/jquery.easing.1.3.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'main_resources/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'main_resources/js/magnific-popup-options.js' %}"></script>
+    <script src="{% static 'main_resources/js/main.js' %}"></script>
+</body>
+
+</html>
